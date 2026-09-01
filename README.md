@@ -1,27 +1,56 @@
 # E-commerce Catalog API
 
-A Django REST Framework API for managing e-commerce product categories, products, product images, and search filters.
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Django](https://img.shields.io/badge/Django-5.2-green)
+![DRF](https://img.shields.io/badge/Django%20REST%20Framework-3.18-red)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 
-## Features
+A clean Django REST Framework API for managing an e-commerce product catalog with categories, products, product images, SKU validation, and flexible search filters.
 
-- Category CRUD API
-- Product CRUD API
-- Product image support
+## Highlights
+
+- Full CRUD for categories and products
+- Product image upload support
 - Unique SKU validation
-- Product search by title or SKU
+- Search by product title or SKU
 - Price range filtering
 - Category filtering with child category support
-- Automated API tests
+- Automated API test coverage
 
 ## Tech Stack
 
-- Python
-- Django
-- Django REST Framework
-- SQLite
-- Pillow
+| Tool | Purpose |
+|---|---|
+| Django | Web framework |
+| Django REST Framework | API layer |
+| SQLite | Local database |
+| Pillow | Image upload support |
 
-## Setup
+## Data Model
+
+```mermaid
+erDiagram
+    CATEGORY ||--o{ CATEGORY : has_children
+    CATEGORY ||--o{ PRODUCT : contains
+
+    CATEGORY {
+        int id
+        string name
+        int parent_id
+    }
+
+    PRODUCT {
+        int id
+        string title
+        string description
+        string image
+        string sku
+        decimal price
+        int category_id
+    }
+```
+
+## Quick Start
 
 ```bash
 pip install -r requirements.txt
@@ -29,7 +58,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-The API will be available at:
+Open:
 
 ```text
 http://127.0.0.1:8000/api/
@@ -37,57 +66,57 @@ http://127.0.0.1:8000/api/
 
 ## API Endpoints
 
-```text
-GET    /api/categories/
-POST   /api/categories/
-GET    /api/categories/{id}/
-PATCH  /api/categories/{id}/
-DELETE /api/categories/{id}/
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/categories/` | List categories |
+| POST | `/api/categories/` | Create category |
+| GET | `/api/categories/{id}/` | Retrieve category |
+| PATCH | `/api/categories/{id}/` | Update category |
+| DELETE | `/api/categories/{id}/` | Delete category |
+| GET | `/api/products/` | List products |
+| POST | `/api/products/` | Create product |
+| GET | `/api/products/{id}/` | Retrieve product |
+| PATCH | `/api/products/{id}/` | Update product |
+| DELETE | `/api/products/{id}/` | Delete product |
+| GET | `/api/products/search/` | Search products |
 
-GET    /api/products/
-POST   /api/products/
-GET    /api/products/{id}/
-PATCH  /api/products/{id}/
-DELETE /api/products/{id}/
+## Search Example
 
-GET    /api/products/search/
+```bash
+GET /api/products/search/?q=phone&min_price=100&max_price=800
 ```
 
-## Product Search Filters
-
-The search endpoint supports these query parameters:
+Supported filters:
 
 ```text
-q          Search by product title or SKU
-title      Search by product title
-sku        Search by SKU
-min_price  Minimum product price
-max_price  Maximum product price
+q          Search by title or SKU
+title      Filter by product title
+sku        Filter by SKU
+min_price  Minimum price
+max_price  Maximum price
 category   Category ID, including child categories
 ```
 
-Example:
-
-```bash
-http://127.0.0.1:8000/api/products/search/?q=phone&min_price=100&max_price=800
-```
-
 ## Tests
-
-Run the test suite with:
 
 ```bash
 python manage.py test
 ```
 
-## Environment Variables
+## Project Structure
 
-For production, set a secure Django secret key:
+```text
+catalog/
+  models.py
+  serializers.py
+  views.py
+  urls.py
+  tests.py
 
-```bash
-DJANGO_SECRET_KEY=your-secret-key
+ecommerce/
+  settings.py
+  urls.py
+
+manage.py
+requirements.txt
 ```
-
-## Notes
-
-The local SQLite database file `db.sqlite3`, uploaded media files, virtual environments, and temporary output files are ignored by Git.
