@@ -28,6 +28,12 @@ A clean Django REST Framework API for managing an e-commerce product catalog wit
 
 ## Quick Start
 
+Clone the repository:
+
+```bash
+git clone https://github.com/hotelski/ecommerce-catalog-api.git
+cd ecommerce-catalog-api
+
 ```bash
 pip install -r requirements.txt
 python manage.py migrate
