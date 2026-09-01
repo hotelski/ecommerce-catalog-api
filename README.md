@@ -26,30 +26,6 @@ A clean Django REST Framework API for managing an e-commerce product catalog wit
 | SQLite | Local database |
 | Pillow | Image upload support |
 
-## Data Model
-
-```mermaid
-erDiagram
-    CATEGORY ||--o{ CATEGORY : has_children
-    CATEGORY ||--o{ PRODUCT : contains
-
-    CATEGORY {
-        int id
-        string name
-        int parent_id
-    }
-
-    PRODUCT {
-        int id
-        string title
-        string description
-        string image
-        string sku
-        decimal price
-        int category_id
-    }
-```
-
 ## Quick Start
 
 ```bash
