@@ -79,20 +79,3 @@ category   Category ID, including child categories
 python manage.py test
 ```
 
-## Project Structure
-
-```text
-catalog/
-  models.py
-  serializers.py
-  views.py
-  urls.py
-  tests.py
-
-ecommerce/
-  settings.py
-  urls.py
-
-manage.py
-requirements.txt
-```
