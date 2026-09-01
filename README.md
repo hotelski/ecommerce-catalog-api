@@ -10,6 +10,8 @@
 A clean Django REST Framework API for managing an e-commerce product catalog with categories, products, product images, SKU validation, and flexible search filters.
 </div>
 
+---
+
 ## Highlights
 
 - Full CRUD for categories and products
