@@ -1,3 +1,4 @@
+<div align="center">
 # E-commerce Catalog API
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
@@ -6,6 +7,7 @@
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 
 A clean Django REST Framework API for managing an e-commerce product catalog with categories, products, product images, SKU validation, and flexible search filters.
+</div>
 
 ## Highlights
 
